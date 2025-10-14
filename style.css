@@ -1,26 +1,40 @@
-
-html {
-    /* Apply the background to the root element to guarantee full coverage */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.863)), url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
-    height: 100vh;
-    object-fit: cover;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    /* The background is now on the <html> tag */
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
     overflow-x: hidden;
+
+    background-color: black; /* fallback base color to hide any flash */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.863)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    object-fit: cover;
+    position: fixed;       /* Prevents Chrome repaint flicker */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 769px) {
+    /* Keep parallax-style fixed background on desktops only */
+    body {
+        background-attachment: fixed;
+    }
 }
 
 .main-container {
+    padding-bottom: 130px;
     width: 90%;
     max-width: 1000px;
 }
@@ -32,6 +46,7 @@ body {
     height: 120px;
     width: 100%;
 }
+
 #resetButton {
     /* Make this button narrower */
     padding-left: 18px;
@@ -64,16 +79,14 @@ button {
     color: rgb(0, 97, 13);
     font-weight: 600; /* Slightly more refined than 'bold' */
     letter-spacing: 0.5px;
-    padding: 14px 28px; /* Increased from 12px 24px to make it slightly taller and wider */
+    padding: 14px 28px; /* Slightly taller and wider */
     border-radius: 8px; /* Softer, modern corners */
     border: none;
     cursor: pointer;
     position: relative; /* Needed for the pseudo-element glow */
     transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    
 }
-
 
 button:hover {
     box-shadow: 0 7px 25px rgba(45, 198, 83, 0.4); /* Creates a green glow */
@@ -146,7 +159,7 @@ button:disabled {
         max-width: 300px;
     }
     
-    /* We no longer need different padding for the buttons on mobile */
+    /* Equal padding for both buttons on mobile */
     #resetButton, #sortButton {
         padding-left: 24px;
         padding-right: 24px;
