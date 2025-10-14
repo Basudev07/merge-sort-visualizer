@@ -1,0 +1,157 @@
+
+html {
+    /* Apply the background to the root element to guarantee full coverage */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.863)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    height: 100%;
+    object-fit: cover;
+}
+
+body {
+    /* The background is now on the <html> tag */
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    margin: 0;
+}
+
+.main-container {
+    width: 90%;
+    max-width: 1000px;
+}
+
+#bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Aligns bars to the bottom */
+    height: 120px;
+    width: 100%;
+}
+#resetButton {
+    /* Make this button narrower */
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+#sortButton {
+    /* Make this button wider */
+    padding-left: 36px;
+    padding-right: 36px;
+}
+
+.color-bar {
+    flex-grow: 1; /* Each bar will take up an equal amount of space */
+    height: 100%; /* All bars are the same height */
+}
+
+.controls {
+    text-align: center;
+    margin-top: 2rem;    
+    display: flex;
+    justify-content: center; /* This keeps the button group centered */
+    gap: 0.5rem; 
+}
+
+/* === PROFESSIONAL BUTTON STYLE === */
+
+button {
+    background: linear-gradient(60deg, #5abb67, #c7c7c7); /* Green gradient */
+    color: rgb(0, 97, 13);
+    font-weight: 600; /* Slightly more refined than 'bold' */
+    letter-spacing: 0.5px;
+    padding: 14px 28px; /* Increased from 12px 24px to make it slightly taller and wider */
+    border-radius: 8px; /* Softer, modern corners */
+    border: none;
+    cursor: pointer;
+    position: relative; /* Needed for the pseudo-element glow */
+    transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+}
+
+
+button:hover {
+    box-shadow: 0 7px 25px rgba(45, 198, 83, 0.4); /* Creates a green glow */
+    background: linear-gradient(90deg, #2dc653, #6ede8a); /* Brighter gradient on hover */
+}
+
+button:active {
+    transform: translateY(0); /* Simulates a press */
+    box-shadow: 0 4px 15px rgb(33, 141, 0);
+}
+
+/* Style for when the button is disabled during animation */
+button:disabled {
+    background: #092e00; /* Flat dark gray */
+    color: #9ca3af; /* Muted text color */
+    cursor: not-allowed;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* === COMPLETION MESSAGE STYLE === */
+#completionMessage {
+    color: #92e6a7; /* Using a light green from your theme */
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    overflow: hidden; /* Important for the max-height transition */
+
+    /* Hide by default by collapsing it */
+    opacity: 0;
+    max-height: 0; 
+    
+    /* Animate the slide-down and fade-in effect */
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-in, margin-top 0.4s ease-out;
+}
+
+#completionMessage.visible {
+    /* Show when the class is added */
+    opacity: 1;
+    max-height: 50px; /* Give it space to expand into */
+    margin-top: 1.5rem; /* Add space between it and the bars */
+}
+
+/* === MOBILE RESPONSIVE STYLES === */
+@media (max-width: 768px) {
+
+    .main-container {
+        width: 95%; /* Use a little more of the screen space */
+    }
+
+    #bar-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; /* Aligns bars to the bottom */
+        height: 80px;
+        width: 100%;
+    }
+
+    .controls {
+        flex-direction: column; /* Stack the buttons vertically */
+        align-items: center;    /* Center the stacked buttons */
+        gap: 1rem;              /* Increase the vertical gap between buttons */
+    }
+
+    /* Make both buttons the same width and slightly smaller for mobile */
+    button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 80%; /* Give buttons a consistent width */
+        max-width: 300px;
+    }
+    
+    /* We no longer need different padding for the buttons on mobile */
+    #resetButton, #sortButton {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    #completionMessage {
+        font-size: 1rem; /* Make the completion text a bit smaller */
+    }
+}
