@@ -20,6 +20,3 @@ A beautiful, interactive web application built to visualize the classic Merge So
 * HTML5
 * CSS3
 * JavaScript (Vanilla ES6)
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/Basudev07/merge-sort-visualizer.git](https://github.com/Basudev07/merge-sort-visualizer.gi
